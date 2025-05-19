@@ -1,6 +1,7 @@
 package org.example;
 
 import org.example.classes.*;
+import org.example.classes.DAOs.LeitorDAO;
 
 public class Main {
     public static void main(String[] args) {
@@ -69,5 +70,22 @@ public class Main {
                 "Emprestado");
 
         reserva.mostrar();
+
+        try {
+            LeitorDAO dao = new LeitorDAO();
+            dao.inserir(leitor);
+            System.out.println("\nInserido com sucesso!");
+
+            leitor.setNome("Miguel Gonsaga");
+            leitor.setTelefone("12345-7890");
+            dao.alterar(leitor);
+            System.out.println("\nAlterado com sucesso!");
+        }
+        catch(Exception e) {
+            System.out.println("\nDeu erro: " + e.getMessage());
+        }
+        finally {
+            System.out.println("\nDeu tudo certo, acabou.\n");
+        }
     }
 }
